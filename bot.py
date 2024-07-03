@@ -1,0 +1,1 @@
+print("Sou um arquivo python criado diretamente do powershell!!!")
