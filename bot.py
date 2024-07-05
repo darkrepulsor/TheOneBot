@@ -13,6 +13,9 @@ logger = logging.basicConfig( level = logging.INFO,
 
 logger = logging.getLogger(__name__)
 
+httpx_logger = logging.getLogger('httpx')
+httpx_logger.setLevel(logging.WARNING)
+
 load_dotenv()
 token = os.getenv("TELEGRAM_TOKEN")
 
