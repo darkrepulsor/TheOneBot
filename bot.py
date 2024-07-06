@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder,CommandHandler
-from controllers.bot_controller import handle_quote
+from controllers.bot_controller import handle_quote,handle_character
 import os
 from dotenv import load_dotenv
 import logging
@@ -8,7 +8,7 @@ import logging
 logger = logging.basicConfig( level = logging.INFO,
                              format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                              filename='MyLogFile.log',
-                             filemode='a'
+                             filemode='w'
                              )
 
 logger = logging.getLogger(__name__)
@@ -23,6 +23,7 @@ def main():
     app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler('quote',handle_quote))
+    app.add_handler(CommandHandler('character',handle_character))
     logger.info('Recebeu o comando e passou para o controller.')
     app.run_polling()
 

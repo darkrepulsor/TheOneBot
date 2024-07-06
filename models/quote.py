@@ -20,6 +20,7 @@ class Quote:
         }
         query = {'limit':'2500'}
         response = requests.get(f"{Quote.url}/quote",headers=headers,params=query)
+        logger.info('A requisicao para buscar uma fala retornou {response.status_code}!')
         if response.status_code == 200:
             data = response.json()
             quotes = data.get("docs",[])
