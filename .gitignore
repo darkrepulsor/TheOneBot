@@ -1,2 +1,6 @@
 /.env
 /MyLogFile.log
+/Lib
+/Scripts
+/Include
+/pyvenv.cfg
