@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder,CommandHandler
-from controllers.bot_controller import handle_quote,handle_character
+from controllers.bot_controller import handle_quote,handle_character,handle_spf_character
 import os
 from dotenv import load_dotenv
 import logging
@@ -20,11 +20,13 @@ load_dotenv()
 token = os.getenv("TELEGRAM_TOKEN")
 
 def main():
+    logger.info('Bot iniciado com sucesso!!!.')
+    logger.info('Recebeu o comando e passou para o controller.')
     app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler('quote',handle_quote))
     app.add_handler(CommandHandler('character',handle_character))
-    logger.info('Recebeu o comando e passou para o controller.')
+    app.add_handler(CommandHandler('spf_character',handle_spf_character))
     app.run_polling()
 
 if __name__ == '__main__':

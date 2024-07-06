@@ -27,3 +27,25 @@ class Character:
             if character:
                 return character[index]["name"]
             return "Sorry my dear fellow, no character was found, try again later."
+        
+    @staticmethod
+    def get_specifc_character(name):
+        fm_name = name.capitalize()
+        headers = {
+            'Content-type':'application/json',
+            'Authorization':f'{Character.type} {Character.token}'
+        }
+        query = {'name':fm_name}
+        response = requests.get(f"{Character.url}/character?",headers=headers,params=query)
+        res = response.status_code
+        logger.info(f'A requisicao para buscar um personagem retornou {res}!')
+        if response.status_code == 200:
+            data = response.json()
+            spf_character = data.get("docs",[])
+            if spf_character:
+                return spf_character
+            else:
+                return {'Erro': 'Personagem não econtrado'}
+        else:
+            return {'Erro': f'Código de status {res}'}
+
