@@ -47,5 +47,5 @@ class Character:
             else:
                 return {'Erro': 'Personagem não econtrado'}
         else:
-            return {'Erro': f'Código de status {res}'}
+            return {'Erro': f'{res}'}
 
