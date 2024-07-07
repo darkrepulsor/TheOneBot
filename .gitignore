@@ -4,3 +4,6 @@
 /Scripts
 /Include
 /pyvenv.cfg
+/models/__pycache__
+/controllers/__pycache__
+/views/__pycache__
