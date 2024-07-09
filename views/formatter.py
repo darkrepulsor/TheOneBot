@@ -31,3 +31,7 @@ def format_books(book):
 \U0001F4DC {m2}
 \U0001F4DC {m3}"""
         return message 
+
+def format_wrong_answer(wrong):
+    message = f"""\U0001F9D9\u200D\u2642\uFE0F Fool of a Took!"""
+    return message

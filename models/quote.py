@@ -29,3 +29,8 @@ class Quote:
             if quotes:
                 return quotes[index]["dialog"]
         return "No quote found"
+    
+    @staticmethod
+    def get_wrong_answer():
+        wrong = "Fool of a Took!"
+        return wrong
