@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder,CommandHandler
-from controllers.bot_controller import handle_quote,handle_character,handle_spf_character, handle_books
+from controllers.bot_controller import handle_quote,handle_character,handle_spf_character, handle_books, handle_start
 import os
 from dotenv import load_dotenv
 import logging
@@ -24,6 +24,7 @@ def main():
     logger.info('Recebeu o comando e passou para o controller.')
     app = ApplicationBuilder().token(token).build()
 
+    app.add_handler(CommandHandler('start',handle_books))
     app.add_handler(CommandHandler('book',handle_books))
     app.add_handler(CommandHandler('quote',handle_quote))
     app.add_handler(CommandHandler('character',handle_character))
