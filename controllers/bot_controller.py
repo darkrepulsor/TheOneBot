@@ -8,33 +8,36 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def Menu(update:Update, context: ContextTypes.DEFAULT_TYPE):
+def Menu():
     
-    print(f"""Preeeecioooous!!!
+    men = f"""Preeeecioooous!!!
           Here are some commands if you need some knowledge or fun:
           \U0001F9D9\u200D\u2642\uFE0F /character - Returns an random character.
           \U0001F9D9\u200D\u2642\uFE0F /quote - Returns an random quote.
           \U0001F9D9\u200D\u2642\uFE0F /book - Returns the name of all three books
-          \U0001F9D9\u200D\u2642\uFE0F /spf_character - Returns a specific character need to inform a name """)
-    
+          \U0001F9D9\u200D\u2642\uFE0F /spf_character - Returns a specific character need to inform a name """
+    return men
+
 async def check_answer(update:Update, context:CallbackContext):
     response = update.message.text
+    logger.info(f'Mensagem recebida: {response}')
     if response == 'Mellon':
-        update.message.reply_text(Menu())
+        logger.info(f'Correct answer received')
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=Menu())
     else:
+        logger.info(f'Wrong answer received')
         wrong = Quote.get_wrong_answer()
         wrong_answer = format_wrong_answer(wrong)
         await context.bot.send_message(chat_id=update.effective_chat.id,text=wrong_answer)
 
 
-async def handle_start(update:Update, context:ContextTypes.DEFAULT_TYPE):
+async def handle_start(update:Update, context:CallbackContext):
     user = update.message.from_user
     logger.info('O bot foi iniciado!!! UHULLL!!')
-    message = f"""Fellow {user}, I\'m RuleThemAll Bot, you came to the right place if you want knowledge and fun, but first...
+    message = f"""Fellow {user.username}, I\'m RuleThemAll Bot, you came to the right place if you want knowledge and fun, but first...
     Say friend and enter..."""
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
-    res = update.message.text
-    check_answer(res)
+   
 
 async def handle_quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info('Preparando para formatar a fala aleatória...')    
@@ -76,7 +79,7 @@ async def handle_spf_character(update: Update, context: CallbackContext):
 
         logger.info('Enviou a mensagem!!!')
     else:
-        update.message.reply_text('Fellow, to use this command correctly you need to include the name of the character.')
+       await update.message.reply_text('Fellow, to use this command correctly you need to include the name of the character.')
 
 async def handle_books(update:Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info('Buscando o livro...')

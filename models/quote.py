@@ -32,5 +32,5 @@ class Quote:
     
     @staticmethod
     def get_wrong_answer():
-        wrong = "Fool of a Took!"
+        wrong = "Fool of a Tûk!"
         return wrong

@@ -1,6 +1,6 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder,CommandHandler
-from controllers.bot_controller import handle_quote,handle_character,handle_spf_character, handle_books, handle_start
+#from telegram import Update, ReplyKeyboardMarkup
+from telegram.ext import ApplicationBuilder,CommandHandler,MessageHandler, filters, CallbackContext
+from controllers.bot_controller import check_answer, handle_quote,handle_character,handle_spf_character, handle_books, handle_start
 import os
 from dotenv import load_dotenv
 import logging
@@ -25,6 +25,7 @@ def main():
     app = ApplicationBuilder().token(token).build()
 
     app.add_handler(CommandHandler('start',handle_start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, check_answer))
     app.add_handler(CommandHandler('book',handle_books))
     app.add_handler(CommandHandler('quote',handle_quote))
     app.add_handler(CommandHandler('character',handle_character))
