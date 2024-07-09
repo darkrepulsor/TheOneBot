@@ -24,7 +24,7 @@ def main():
     logger.info('Recebeu o comando e passou para o controller.')
     app = ApplicationBuilder().token(token).build()
 
-    app.add_handler(CommandHandler('start',handle_books))
+    app.add_handler(CommandHandler('start',handle_start))
     app.add_handler(CommandHandler('book',handle_books))
     app.add_handler(CommandHandler('quote',handle_quote))
     app.add_handler(CommandHandler('character',handle_character))
