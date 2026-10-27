@@ -21,7 +21,7 @@ def Menu():
 async def check_answer(update:Update, context:CallbackContext):
     response = update.message.text
     logger.info(f'Mensagem recebida: {response}')
-    if response == 'Mellon':
+    if response.lower() == 'Mellon'.lower():
         logger.info(f'Correct answer received')
         await context.bot.send_message(chat_id=update.effective_chat.id, text=Menu())
     else:
